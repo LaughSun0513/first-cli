@@ -65,6 +65,7 @@ const createTemplate = (fromPath,toPath,renderData) => {
     fs.writeFileSync(toPath,originTpl); // 否则 直接将模板写入
   }
 }
+// 懒得写route的逻辑了 基本思路 -- 就是创建的模板文件内容不一样
 module.exports = {
   createComponent
 }

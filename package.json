@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "init-component":"node index.js create-mycli-app create component myapp",
-    "init-download":"node index.js mycli download component myDownload"
+    "init-component":"node ./cli-1/index.js create-mycli-app create component myapp",
+    "init-download":"node ./cli-1/index.js mycli download component myDownload"
   },
   "bin": {
     "ycli": "./bin/ycli"
