@@ -1,0 +1,26 @@
+{
+  "name": "ycli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "ycli": "./bin/www.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "commander": "^6.0.0",
+    "ncp": "^2.0.0"
+  },
+  "devDependencies": {
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^7.3.3",
+    "ora": "^4.0.5",
+    "util": "^0.12.3"
+  }
+}
