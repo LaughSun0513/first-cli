@@ -236,3 +236,55 @@ const ncp = promisify(require("ncp"));
 // target 本地路径
 await ncp(target, path.join(path.resolve(), projectName));
 ```
+
+### 第五步: 复杂模板的动态渲染
+`npm i metalsmith ejs consolidate`
+```js
+// 模板内的<%=private%> <%=author%> <%=description%> <%=license%>通过ejs变量占位
+// 后续通过读取ask.js配置来询问用户填充上变量,获取到用户自定义数据填充到到模板package.json
+{
+  "name": "vue-template",
+  "version": "0.1.2",
+  "private": "<%=private%>",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "vue": "^2.6.10"
+  },
+  "autor":"<%=author%>",
+  "description": "<%=description%>",
+  "devDependencies": {
+    "@vue/cli-service": "^3.11.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "license": "<%=license%>"
+}
+
+```
+1. 判断项目模版里面是否有ask.js文件(inquirer.prompt的配置文件) --> 以此认定为复杂模板(就是需要用户填充变量到package.json)
+2. 编译模板
+```js
+MetalSmith(__dirname)
+    .source(本地项目临时路径)
+    .destination(最终路径)
+    .use(()=>{
+      // 询问用户
+      // 获取到数据之后和metal.metadata合并，生成最终的obj数据
+      // 最终模板里不需要ask.js，需要删除
+      // 遍历模板里的每个文件,找到里面content包含ejs语法的变量位置进行替换
+      // 通过buffer的方式render最终的content
+    })
+    .build((err)=>{
+      // 监听编译模板时的错误信息
+    })
+```
+3. ycli c test 运行命令行生成动态package.json
+
+### 第六步: 发布脚手架
+```js
+npm addUser // 注册账号密码
+npm login // 登陆账号
+npm publish
+```
